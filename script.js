@@ -4,8 +4,10 @@ let urlBase = 'https://api.themoviedb.org/3/search/movie'
 let api_key = 'c3a520c3e4b19556790cb816d9baf3e2'
 let urlImg = 'https://image.tmdb.org/t/p/w500/'
 
+let resultContainer = document.getElementById("results")
 
 function searchMovies() {
+    resultContainer.innerHTML = "Cargando..."
     let searchInput = document.getElementById("searchInput").value;
 
     fetch(`${urlBase}?api_key=${api_key}&query=${searchInput}`)
@@ -15,11 +17,10 @@ function searchMovies() {
 
 
 function displayMovies(movies){
-    let resultContainer = document.getElementById("results")
     resultContainer.innerHTML = ""
     if(movies.length === 0){
         resultContainer.innerHTML = ""
-        resultContainer.innerHTML = "<p>No se encontrarón resultados</p>"
+        resultContainer.innerHTML = "<p>No se encontrarón resultados.</p>"
         return
     }
     movies.forEach(movie => {
